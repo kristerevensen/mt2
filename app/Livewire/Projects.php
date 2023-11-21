@@ -14,19 +14,17 @@ class Projects extends Component
 
     public $projects;
 
-    public function render()
-    {
-        //$projects = Project::where("user_id", auth("")->user()->id)->paginate(10);
-        $this->projects = Project::all();
-        return view('livewire.projects',[
-            'projects' => $this->projects
-        ]);
-    }
-
     public function mount($projects)
     {
-        //$this->projects = Project::whereIn('id', $projects)->get();
-        $this->projects = Project::all();
+        $this->projects = $projects;
+
     }
+
+    public function render()
+    {
+        return view('livewire.projects');
+    }
+
+
 
 }
