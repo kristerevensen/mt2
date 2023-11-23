@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f499bec682a7810cc33bd1c3843743a",
+    "content-hash": "83f44879321b1053750598db190152ff",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1073,6 +1073,49 @@
                 }
             ],
             "time": "2023-08-27T10:19:19+00:00"
+        },
+        {
+            "name": "jovix/dataforseo-clientv3",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jovixv/DFSClient-v3.git",
+                "reference": "b3b7f8d28348986e26a9e8d9886eae3f63b3ef45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jovixv/DFSClient-v3/zipball/b3b7f8d28348986e26a9e8d9886eae3f63b3ef45",
+                "reference": "b3b7f8d28348986e26a9e8d9886eae3f63b3ef45",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": ">=7.0",
+                "php": ">=7.2",
+                "symfony/var-dumper": ">=5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DFSClientV3\\": "src/DFSClient/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vitaliy Lyabakh",
+                    "email": "igrolan@gmail.com"
+                }
+            ],
+            "description": "PHP Client for DataForSeo",
+            "support": {
+                "issues": "https://github.com/jovixv/DFSClient-v3/issues",
+                "source": "https://github.com/jovixv/DFSClient-v3/tree/v1.1.4"
+            },
+            "time": "2021-09-18T13:11:19+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -8571,5 +8614,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

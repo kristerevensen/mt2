@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Str;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -24,6 +25,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'domain' => ['required', 'string'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
@@ -32,6 +34,8 @@ class CreateNewUser implements CreatesNewUsers
             return tap(User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'user_code' => $this->generateUniqueId(),
+                'domain' => $this->extractDomain($input['domain']),
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
                 $this->createTeam($user);
@@ -46,8 +50,32 @@ class CreateNewUser implements CreatesNewUsers
     {
         $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
-            'name' => explode(' ', $user->name, 2)[0]."'s Team",
+            'name' => ucfirst(strtolower($this->extractDomain($user->domain))),
             'personal_team' => true,
+            'domain' => $this->extractDomain($user->domain),
+            'team_code' => $this->generateUniqueId()
         ]));
+    }
+
+    public function extractDomain($url)
+    {
+       // Prepend 'http://' if no scheme is present
+        if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+            $url = "http://" . $url;
+        }
+
+        $parsedUrl = parse_url($url);
+        $domain = $parsedUrl['host'] ?? '';
+
+        // Optionally remove 'www.' from the domain
+        $domain = str_replace('www.', '', $domain);
+
+        // Remove trailing slashes
+        return rtrim($domain, '/');
+    }
+
+    public function generateUniqueId($length = 10)
+    {
+        return Str::random($length);
     }
 }

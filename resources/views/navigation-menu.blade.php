@@ -24,8 +24,11 @@
                     <x-nav-link href="{{ route('pages') }}" :active="request()->routeIs('pages')">
                         {{ __('Pages') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('keywords') }}" :active="request()->routeIs('keywords')">
-                        {{ __('Keywords') }}
+                    <x-nav-link href="{{ route('seo') }}" :active="request()->routeIs('seo')">
+                        {{ __('SEO') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('experimentation') }}" :active="request()->routeIs('experimentation')">
+                        {{ __('Experimentation') }}
                     </x-nav-link>
                 </div>
 
@@ -164,8 +167,11 @@
             <x-responsive-nav-link href="{{ route('pages') }}" :active="request()->routeIs('pages')">
                 {{ __('Pages') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="{{ route('keywords') }}" :active="request()->routeIs('keywords')">
-                {{ __('Keywords') }}
+            <x-responsive-nav-link href="{{ route('seo') }}" :active="request()->routeIs('seo')">
+                {{ __('SEO') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('experimentation') }}" :active="request()->routeIs('experimentation')">
+                {{ __('Experimentation') }}
             </x-responsive-nav-link>
         </div>
 

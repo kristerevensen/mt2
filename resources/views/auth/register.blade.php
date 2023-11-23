@@ -20,6 +20,11 @@
             </div>
 
             <div class="mt-4">
+                <x-label for="domain" value="{{ __('Company Domain') }}" />
+                <x-input id="domain" class="block mt-1 w-full" type="text" name="domain" :value="old('domain')" required autocomplete="domain" />
+            </div>
+
+            <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>

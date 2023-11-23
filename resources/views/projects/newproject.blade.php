@@ -18,27 +18,55 @@
                         <form class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
                           <div class="px-4 py-6 sm:p-8">
                             <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                              <div class="sm:col-span-4">
+                              <div class="sm:col-span-6">
                                 <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Project Name') }}</label>
                                 <div class="mt-2">
                                   <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                               </div>
 
-                              <div class="sm:col-span-4">
+                              <div class="sm:col-span-3">
                                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Project Domain') }}</label>
                                 <div class="mt-2">
                                   <input id="project_domain" name="project_domain" type="url" autocomplete="project_domain" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                               </div>
 
-                              <div class="sm:col-span-4">
+                              <div class="sm:col-span-3">
                                 <label for="country" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Project Team') }}</label>
                                 <div class="mt-2">
-                                  <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                  <select id="team" name="team" autocomplete="team-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                     @foreach ($teams as $team)
                                     <option value="{{ $team->id }}">{{ $team->name }}</option>
                                     @endforeach
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="sm:col-span-2">
+                                <label for="country" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Language') }}</label>
+                                <div class="mt-2">
+                                  <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+
+                                    <option value="1">Language</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="sm:col-span-2">
+                                <label for="country" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Country') }}</label>
+                                <div class="mt-2">
+                                  <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+
+                                    <option value="1">Country</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="sm:col-span-2">
+                                <label for="country" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Categories') }}</label>
+                                <div class="mt-2">
+                                  <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+
+                                    <option value="1">Categories</option>
                                   </select>
                                 </div>
                               </div>

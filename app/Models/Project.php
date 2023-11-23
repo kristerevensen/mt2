@@ -22,7 +22,7 @@ class Project extends Model
         'created_at',
         'access',
         'team_id',
-        'project_id',
+        'project_code',
     ];
 
 

@@ -8,12 +8,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
+use App\Services\DataForSEOService;
 
 class Projects extends Component
 {
 
     public $projects = [];
-    
+
 
     public function mount()
     {
@@ -55,6 +56,7 @@ class Projects extends Component
 
     public function render()
     {
+
         return view('livewire.projects');
     }
 

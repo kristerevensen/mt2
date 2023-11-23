@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->unsignedBigInteger('owner_id'); // assuming a user owns a project
             $table->unsignedBigInteger('team_id'); // assuming a user owns a project
-            $table->string('project_id', 8)->unique(); // Legger til custom_id-kolonnen
+            $table->string('project_code', 10)->unique(); // uniqye ID per project
             $table->foreign('owner_id')->references('id')->on('users'); // foreign key constraint
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
 
