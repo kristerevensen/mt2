@@ -47,11 +47,9 @@ class Projects extends Component
                 'project_id' => 'PRJ00003'
             ],
         ];
+        $this->projects = Project::all(); // or use pagination if needed
 
-        // Convert each project array to an object
-        $this->projects = array_map(function($project) {
-            return json_decode(json_encode($project));
-        }, $this->projects);
+
     }
 
     public function render()

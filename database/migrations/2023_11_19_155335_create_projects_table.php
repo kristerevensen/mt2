@@ -20,6 +20,11 @@ return new class extends Migration
             $table->string('project_code', 10)->unique(); // uniqye ID per project
             $table->foreign('owner_id')->references('id')->on('users'); // foreign key constraint
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->string('name'); // Add a name for the project
+            $table->string('domain')->nullable(); // Add a domain for the project, nullable
+            $table->string('language')->nullable(); // language used or associated with the project
+            $table->string('country')->nullable(); // country associated with the project
+            $table->text('categories')->nullable(); // categories associated with the project, could be JSON or comma-separated values
 
         });
     }
