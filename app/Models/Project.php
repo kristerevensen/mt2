@@ -24,7 +24,9 @@ class Project extends Model
         'team_id',
         'project_code',
     ];
+    public function index() {
 
+    }
 
     public function owner() {
         return $this->belongsTo(User::class, 'owner_id');

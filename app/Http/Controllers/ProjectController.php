@@ -22,7 +22,8 @@ class ProjectController extends Controller
     public function index()
     {
 
-        //return view('projects.index');
+        $projects = Project::paginate();
+        return view("projects", compact("projects"));
     }
 
     public function create(User $user)
