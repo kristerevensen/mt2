@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('analytics', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('url');
+            $table->string('title')->nullable();
+            $table->string('referrer')->nullable();
+            $table->string('device_type');
+            $table->timestamp('timestamp');
+            $table->string('project_code');
+            // Additional columns as needed
         });
     }
 

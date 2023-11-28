@@ -28,7 +28,8 @@ class ProjectController extends Controller
 
     public function create(User $user)
     {
-        //$teams = $user->ownedTeams();
+        $teams = $user->teams();
+        dd($teams);
         $teams = [];
 
         return view('projects.newproject', ['teams' => $teams]);

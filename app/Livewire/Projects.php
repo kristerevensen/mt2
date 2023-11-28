@@ -3,63 +3,106 @@
 namespace App\Livewire;
 
 use App\Models\Project;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class Projects extends PowerGridComponent
 {
-    use WithExport;
-
     public function setUp(): array
     {
-        $this->projects = [
-            [
-                'id' => '1',
-                'description' => 'Project Alpha Description',
-                'name' => 'Project Alpha',
-                'domain' => 'domain.no',
-                'owner_id' => 1, // Replace with actual user IDs
-                'team_id' => 1, // Replace with actual team IDs
-                'project_id' => 'PRJ00001'
-            ],
-            [
-                'id' => '2',
-                'description' => 'Project Beta Description',
-                'name' => 'Project Beta',
-                'domain' => 'domain2.no',
-                'owner_id' => 1, // Replace with actual user IDs
-                'team_id' => 1, // Replace with actual team IDs
-                'project_id' => 'PRJ00002'
-            ],
-            [
-                'id' => '3',
-                'description' => 'Project Gamma Description',
-                'name' => 'Project Charlie',
-                'domain' => 'domain3.no',
-                'owner_id' => 1, // Replace with actual user IDs
-                'team_id' => 1, // Replace with actual team IDs
-                'project_id' => 'PRJ00003'
-            ],
-        ];
+        $this->showCheckBox();
 
-        // Convert each project array to an object
-        $this->projects = array_map(function($project) {
-            return json_decode(json_encode($project));
-        }, $this->projects);
+        return [
+            Exportable::make('export')
+                ->striped()
+                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            Header::make()
+                ->showSearchInput()
+                ->showToggleColumns()
+                ->withoutLoading(),
+            Footer::make()
+                ->showPerPage()
+                ->showRecordCount(),
+        ];
+    }
+
+    public function datasource(): Builder
+    {
+        return Project::query();
+    }
+
+    public function addColumns(): PowerGridColumns
+    {
+        return PowerGrid::columns()
+            ->addColumn('id')
+            ->addColumn('name')
+            ->addColumn('name_lower', fn (Project $model) => strtolower(e($model->name)))
+            ->addColumn('created_at')
+            ->addColumn('created_at_formatted', fn (Project $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+    }
+
+    public function columns(): array
+    {
+        return [
+            Column::make('ID', 'id')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('Name', 'name')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('Created at', 'created_at')
+                ->hidden(),
+
+            Column::make('Created at', 'created_at_formatted', 'created_at')
+                ->searchable(),
+
+            Column::action('Action')
+        ];
+    }
+
+    public function filters(): array
+    {
+        return [
+            Filter::datepicker('created_at_formatted', 'created_at'),
+        ];
+    }
+
+    #[\Livewire\Attributes\On('edit')]
+    public function edit($rowId): void
+    {
+        $this->js('alert('.$rowId.')');
+    }
+
+    public function actions(\App\Models\Project $row): array
+    {
+        return [
+            Button::add('edit')
+                ->slot('Edit: '.$row->id)
+                ->id()
+                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->dispatch('edit', ['rowId' => $row->id]),
+            Button::add('delete')
+                ->slot('Delete '.$row->id)
+                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+                ->dispatch('delete', [''=> $row->id]),
+
+        ];
     }
 
     /*
-    public function actionRules($row): array
+    public function actionRules(\App\Models\Project $row): array
     {
        return [
             // Hide button edit for ID 1
