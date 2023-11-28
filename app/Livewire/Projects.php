@@ -2,20 +2,25 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Livewire\WithPagination;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use PowerComponents\LivewirePowerGrid\Button;
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
+use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridColumns;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-class Projects extends Component
+final class Projects extends PowerGridComponent
 {
+    use WithExport;
 
-    public $projects = [];
-    
-
-    public function mount()
+    public function setUp(): array
     {
         $this->projects = [
             [
@@ -53,9 +58,15 @@ class Projects extends Component
         }, $this->projects);
     }
 
-    public function render()
+    /*
+    public function actionRules($row): array
     {
-        return view('livewire.projects');
+       return [
+            // Hide button edit for ID 1
+            Rule::button('edit')
+                ->when(fn($row) => $row->id === 1)
+                ->hide(),
+        ];
     }
-
+    */
 }

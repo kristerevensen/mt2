@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KeywordDataController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,14 +32,21 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/pages', function () {
         return view('pages');
     })->name('pages');
-    Route::get('/keywords', function () {
-        return view('keywords');
-    })->name('keywords');
+    Route::get('/seo', function () {
+        return view('seo');
+    })->name('seo');
+    Route::get('/experimentation', function () {
+        return view('seo');
+    })->name('experimentation');
     Route::get('/projects/create', function () {
         return view('newproject');
     })->name('newproject');
     Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+
+    Route::get('/projects/testing', [ProjectController::class, 'testing'])->name('projects.testing');
+    Route::get('/keyword-data', [KeywordDataController::class, 'postKeywordData']);
+    Route::get('/getid', [KeywordDataController::class, 'getid']);
 
 });

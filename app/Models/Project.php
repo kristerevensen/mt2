@@ -22,9 +22,11 @@ class Project extends Model
         'created_at',
         'access',
         'team_id',
-        'project_id',
+        'project_code',
     ];
+    public function index() {
 
+    }
 
     public function owner() {
         return $this->belongsTo(User::class, 'owner_id');
