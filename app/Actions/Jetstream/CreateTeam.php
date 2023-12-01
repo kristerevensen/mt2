@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Contracts\CreatesTeams;
 use Laravel\Jetstream\Events\AddingTeam;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Str;
 
 class CreateTeam implements CreatesTeams
 {
@@ -30,8 +31,19 @@ class CreateTeam implements CreatesTeams
         $user->switchTeam($team = $user->ownedTeams()->create([
             'name' => $input['name'],
             'personal_team' => false,
+            'team_code' => $this->generateUniqueId(),
+            'domain' => '',
+            'language' => '',
+            'language_code' => '',
+            'location_code' => '',
+            'location_name' => ''
         ]));
 
         return $team;
+    }
+
+    public function generateUniqueId($length = 10)
+    {
+        return str::random($length);
     }
 }

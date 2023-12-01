@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Measuretank') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,7 +13,15 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script>
+            (function() {
+            var mt = document.createElement('script'); mt.type = 'text/javascript'; mt.async = true;
+            mt.src = 'https://tracking.measuretank.com/tracking.js';
+            mt.setAttribute('data-project-code', 'P00000001');
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mt, s);
+        })();
 
+        </script>
         <!-- Styles -->
         @livewireStyles
     </head>
