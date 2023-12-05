@@ -6,6 +6,35 @@
     <title>Measuretank - Optimize Your Website Performance</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <script>
+        (function() {
+    var projectCode = document.currentScript.getAttribute('data-project-code');
+
+    function collectData() {
+        var data = {
+            url: window.location.href,
+            title: document.title,
+            referrer: document.referrer,
+            deviceType: navigator.userAgent,
+            timestamp: new Date().toISOString(),
+            projectCode: projectCode
+        };
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://www.measuretank.com/tracking/collect/', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(data));
+            console.log(data);
+        }
+
+        if (window.addEventListener) {
+            window.addEventListener('load', collectData, false);
+        } else if (window.attachEvent) {
+            window.attachEvent('onload', collectData);
+        }
+    })();
+
+    </script>
     <style>
         body {
             font-family: Figtree, sans-serif;
