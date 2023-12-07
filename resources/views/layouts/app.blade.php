@@ -13,15 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script>
-            (function() {
-            var mt = document.createElement('script'); mt.type = 'text/javascript'; mt.async = true;
-            mt.src = 'https://tracking.measuretank.com/tracking.js';
-            mt.setAttribute('data-project-code', 'P00000001');
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mt, s);
-        })();
 
-        </script>
         <!-- Styles -->
         @livewireStyles
     </head>
