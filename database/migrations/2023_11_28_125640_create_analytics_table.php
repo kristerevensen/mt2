@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('url');
             $table->string('title')->nullable();
             $table->string('referrer')->nullable();
-            $table->string('device_type');
+            $table->string('device_type')->nullable();
             $table->timestamps();
             $table->string('project_code');
             $table->string('session_id')->nullable();
@@ -24,12 +24,15 @@ return new class extends Migration
             $table->string('protocol')->nullable();
             $table->string('pathname')->nullable();
             $table->string('language')->nullable();
+            $table->text('meta_description')->nullable();
             $table->boolean('cookie_enabled')->nullable();
             $table->integer('screen_width')->nullable();
             $table->integer('screen_height')->nullable();
             $table->integer('history_length')->nullable();
             $table->integer('word_count')->nullable();
             $table->integer('form_count')->nullable();
+            $table->text('inbound_links')->nullable();
+            $table->text('outbound_links')->nullable();
             // Additional columns as needed
         });
 

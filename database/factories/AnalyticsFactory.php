@@ -21,6 +21,7 @@ class AnalyticsFactory extends Factory
             'url' => $this->faker->url,
             'title' => $this->faker->sentence,
             'referrer' => $this->faker->url,
+            'meta_description' => $this->faker->sentence,
             'device_type' => $this->faker->randomElement(['desktop', 'mobile', 'tablet']),
             'project_code' => 'P00000001',
             'session_id' => $this->faker->uuid,
