@@ -19,6 +19,7 @@ class AnalyticsFactory extends Factory
     {
         return [
             'url' => $this->faker->url,
+            'url_code' => $this->faker->uuid,
             'title' => $this->faker->sentence,
             'referrer' => $this->faker->url,
             'meta_description' => $this->faker->sentence,

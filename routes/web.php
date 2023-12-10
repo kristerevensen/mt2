@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KeywordDataController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/projects/create', function () {
         return view('newproject');
     })->name('newproject');
+    Route::get('/url/{url_code}', [PageController::class, 'index'])->name('url.view');
+
     Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
     Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');

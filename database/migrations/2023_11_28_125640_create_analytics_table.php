@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('analytics', function (Blueprint $table) {
             $table->id();
             $table->string('url');
+            $table->string('url_code')->index();
             $table->string('title')->nullable();
             $table->string('referrer')->nullable();
             $table->string('device_type')->nullable();

@@ -8,6 +8,12 @@
                 <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Tittel
                 </th>
+                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Sidevisninger
+                </th>
+                <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Sessions
+                </th>
                 <!-- Legg til flere kolonner etter behov -->
             </tr>
         </thead>
@@ -15,11 +21,22 @@
             @foreach ($urls as $url)
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $url->url }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            <a href="{{ route('url.view', ['urlKey' => $url->url_code]) }}">{{ $url->url }}</a>
+                        </p>
                     </td>
+
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">{{ $url->title }}</p>
                     </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $url->count }}</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $url->sessions }}
+                        </p>
+                    </td>
+
                     <!-- Vis flere felt etter behov -->
                 </tr>
             @endforeach
