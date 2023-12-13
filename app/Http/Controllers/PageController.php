@@ -6,6 +6,7 @@ use App\Models\Analytics;
 use App\Models\Page;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
@@ -14,7 +15,7 @@ class PageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($url_code)
+    public function index($url_code = null)
     {
         $this->url = Analytics::select('url',
         DB::raw('MAX(title) as title'),

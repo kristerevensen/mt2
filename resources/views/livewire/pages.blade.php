@@ -22,7 +22,7 @@
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">
-                            <a href="{{ route('url.view', ['urlKey' => $url->url_code]) }}">{{ $url->url }}</a>
+                            <a href="{{ route('url.view', ['url_code' => $url->url]) }}">{{ $url->url }}</a>
                         </p>
                     </td>
 
