@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('protocol')->nullable();
             $table->string('pathname')->nullable();
             $table->string('language')->nullable();
+            $table->string('bounce')->nullable();
+            $table->string('entrance')->nullable();
             $table->text('meta_description')->nullable();
             $table->boolean('cookie_enabled')->nullable();
             $table->integer('screen_width')->nullable();

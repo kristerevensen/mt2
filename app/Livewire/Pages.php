@@ -37,8 +37,8 @@ class Pages extends Component
                        ->whereBetween('created_at', [$this->startDate, $this->endDate])
                        ->groupBy('url', 'url_code')
                        ->orderBy('count','desc')
-                       //->get();gi
-                       ->paginate($this->perPage);
+                       ->get();
+                      // ->paginate($this->perPage);
 
     }
 
